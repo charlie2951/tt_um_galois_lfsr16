@@ -22,7 +22,7 @@ module tt_um_galois_lfsr16 (
   assign uio_oe  = 1; //bidirectional io port set as output
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, 1'b0};
+    wire _unused = &{ena,ui_in[7],uio_in[0],uio_in[1],uio_in[2],uio_in[3],uio_in[4], uio_in[5], uio_in[6], uio_in[7], 1'b0};
 
     wire [15:0] lfsr_out;
     assign uo_out = lfsr_out[7:0];
