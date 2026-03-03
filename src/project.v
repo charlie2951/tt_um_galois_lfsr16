@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_example (
+module tt_um_galois_lfsr16 (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -17,11 +17,25 @@ module tt_um_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+//  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+//  assign uio_out = 0;
+  assign uio_oe  = 1; //bidirectional io port set as output
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+  wire _unused = &{ena, 1'b0};
 
+    wire [15:0] lfsr_out;
+    assign uo_out = lfsr_out[7:0];
+    assign uio_out = lfsr_out[15:8];
+    
+    // Instantiate the LFSR
+    galois_lfsr_16_32way uut (
+        .clk(clk),
+        .rst_n(rst_n),
+        .en(ui_in[0]),//enable
+        .dir(ui_in[1]),//left or right shift
+        .poly_sel(ui_in[6:2]),//select polynomial
+        .q(lfsr_out)
+    );
+    
 endmodule
