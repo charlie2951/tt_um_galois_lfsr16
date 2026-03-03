@@ -29,7 +29,7 @@ module tt_um_galois_lfsr16 (
     assign uio_out = lfsr_out[15:8];
     
     // Instantiate the LFSR
-    galois_lfsr_16_32way uut (
+    galois_lfsr_16 uut (
         .clk(clk),
         .rst_n(rst_n),
         .en(ui_in[0]),//enable
