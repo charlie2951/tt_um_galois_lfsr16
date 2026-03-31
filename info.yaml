@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "16 bit Galois LFSR based Random number generator"      # Project title
-  author:       "Subir Maity"      # Your name
+  author:       "Subir Maity, Jitendra Kr. Das"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Random no generator using LFSR with user selectable 32 different polynomial"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
